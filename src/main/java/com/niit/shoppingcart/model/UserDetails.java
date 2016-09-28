@@ -1,5 +1,6 @@
 package com.niit.shoppingcart.model;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.springframework.stereotype.Component;
@@ -11,22 +12,17 @@ import org.springframework.stereotype.Component;
 public class UserDetails {
 	
 	@Id
-	private String id;
-	private String name;
+	@GeneratedValue
+	private int id;
+	private String username;
 	private String password;
 	private String mail;
 	private String contact;
 	private String address;
 	private String role;
-	private String userName;
-	private String enabled;
+	private boolean enabled;
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -57,24 +53,25 @@ public class UserDetails {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getEnabled() {
+	public boolean isEnabled() {
 		return enabled;
 	}
-	public void setEnabled(String enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	
 	
 	

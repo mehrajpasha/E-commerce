@@ -22,17 +22,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 				this.sessionFactory = sessionFactory;
 			}
 			@Transactional
-			public void saveOrUpdate(UserDetails userdetails){
+			public boolean saveOrUpdate(UserDetails userdetails){
+				try{
 				sessionFactory.getCurrentSession().saveOrUpdate(userdetails);
+		    	 return true;
+		     }catch(Exception e){
+		     e.printStackTrace();
+			return false;
+		}
 			} 
 			@Transactional
-			public void delete(String id){
-			     UserDetails userdetails = new UserDetails();
-				userdetails.setId(id);
-				sessionFactory.getCurrentSession().delete(userdetails);
+			public boolean delete(UserDetails userdetails){
+			     try{
+			    	 sessionFactory.getCurrentSession().delete(userdetails);
+			    	 return true;
+			     }catch(Exception e){
+			     e.printStackTrace();
+				return false;
 			}
+		}
 			@Transactional
-			public UserDetails get(String id){
+			public UserDetails get(int id){
 				String hql = "from UserDetails where id=" + "'" +id +"'";
 				Query query = sessionFactory.getCurrentSession().createQuery(hql);
 				@SuppressWarnings("unchecked")
@@ -55,9 +65,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 	      
 			@SuppressWarnings("rawtypes")
 			@Transactional
-			public boolean isValidUser(String userName, String password) {
+			public boolean isValidUser(String username, String password) {
 				Criteria c=sessionFactory.getCurrentSession().createCriteria(UserDetails.class);
-				c.add(Restrictions.eq("userName",userName));
+				c.add(Restrictions.eq("username",username));
 				c.add(Restrictions.eq("password",password));
 				
 				List list = c.list();
@@ -71,9 +81,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 				}
 			}
 			@Transactional
-			public UserDetails get1(String userName) {
+			public UserDetails get1(String username) {
 				Criteria c=sessionFactory.getCurrentSession().createCriteria(UserDetails.class);
-				c.add(Restrictions.eq("userName",userName));
+				c.add(Restrictions.eq("username",username));
 				
 				@SuppressWarnings("unchecked")
 				List<UserDetails> listUser = (List<UserDetails>) c.list();
@@ -87,17 +97,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 				}
 			}
 			
-			public boolean save(UserDetails userdetails){
-				return false;	
-			}
-			
-			public boolean update(UserDetails userdetails){
-				return false;
-			}
-			
-				public boolean delete(UserDetails userdetails){
-					return false;
-				}		
+				
 			
 			
 			

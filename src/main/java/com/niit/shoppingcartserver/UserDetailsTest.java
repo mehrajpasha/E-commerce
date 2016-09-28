@@ -14,17 +14,17 @@ public class UserDetailsTest {
 		context.scan("com.niit.shoppingcart");
 		context.refresh();
 
-		UserDetailsDAO userDetailsDAO = (UserDetailsDAO) context.getBean("userDetailsDAO");
-		UserDetails userDetails = (UserDetails) context.getBean("userDetails");
+		UserDetailsDAO userdetailsDAO = (UserDetailsDAO) context.getBean("userDetailsDAO");
+		UserDetails userdetails = (UserDetails) context.getBean("userdetails");
 
-		userDetails.setId("UD001");
-		userDetails.setName("rish");
-		userDetails.setPassword("rishabh");
-		userDetails.setMail("xyz123@ymail.com");
-		userDetails.setContact("123456789");
-		userDetails.setAddress("hyderabad");
+		userdetails.setId(8);
+		userdetails.setUsername("mehraj");
+		userdetails.setPassword("munna786");
+		userdetails.setMail("mehrajrockon@gmail.com");
+		userdetails.setContact("8985363545");
+		userdetails.setAddress("hyderabad");
 
-		if (userDetailsDAO.save(userDetails) == true) {
+		if (userdetailsDAO.saveOrUpdate(userdetails) == true) {
 			System.out.println("userDetails created successfully");
 		} else {
 			System.out.println("not able to create userDetails");

@@ -19,8 +19,9 @@ public class Product {
        private String name;
        private String description;
        private int price;
-       private int supplierid;
+       private String suppliername;
        private int categoryid;
+  
 	public int getId() {
 		return id;
 	}
@@ -54,21 +55,19 @@ public class Product {
 	public void setImage(MultipartFile image) {
 		this.image = image;
 	}
-	public int getSupplierid() {
-		return supplierid;
+	public String getSuppliername() {
+		return suppliername;
 	}
-	public void setSupplierid(int supplierid) {
-		this.supplierid = supplierid;
+	public void setSuppliername(String suppliername) {
+		this.suppliername = suppliername;
 	}
+	
 	public int getCategoryid() {
 		return categoryid;
 	}
 	public void setCategoryid(int categoryid) {
 		this.categoryid = categoryid;
-	}
-	
-	
-	
+	}	
 	
 	
 	

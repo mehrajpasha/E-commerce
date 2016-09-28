@@ -40,7 +40,7 @@ public class ProductController {
 		productDAO.saveOrUpdate(product);
 		MultipartFile file=product.getImage();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory + "\\resources\\images\\"+product.getId()+".jpg");
+        path = Paths.get(rootDirectory + "\\resources\\images\\product\\"+product.getId()+".jpg");
         if (file != null && !file.isEmpty()) {
             try {
             	System.out.println("Image Saving Start");
@@ -75,5 +75,6 @@ public String ProductPagedelete(@ModelAttribute("product") Product product,Model
 	productDAO.delete(product);
 	return "redirect:/Product";
 }
-	
+
 }
+

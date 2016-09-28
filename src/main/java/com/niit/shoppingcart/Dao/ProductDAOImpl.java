@@ -2,11 +2,13 @@ package com.niit.shoppingcart.Dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
+
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +53,7 @@ import com.niit.shoppingcart.model.Product;
 			String hql = "from Product where id=" + "'" +id +"'";
 			Query query = sessionFactory.getCurrentSession().createQuery(hql);
 			@SuppressWarnings("unchecked")
-			List<Product> listCategory = (List<Product>)((Criteria) query).list();
+			List<Product> listCategory =query.list();
 			if(listCategory!= null && !listCategory.isEmpty()){
 				return listCategory.get(0);
 			}
@@ -81,12 +83,40 @@ import com.niit.shoppingcart.model.Product;
 			return false;
 		}
 		*/
-		/*public List<Product> getbycategory(int id) {
-			String hql ="from Category where categoryid="+id;
+		@Transactional
+		public List<Product> getbycategory(int id) {
+			String hql ="from Product where categoryid="+id;
 			Query query = sessionFactory.getCurrentSession().createQuery(hql);
 			@SuppressWarnings("unchecked")
-			List<Product> listCategory = (List<Product>)((Criteria) query).list();
+			List<Product> listCategory = (List<Product>)query.list();
 			return listCategory;
-		}*/
+		}
+	
+		
+		@Transactional
+		public Product getindividual(int id) {
+			String hql = "from"+" Product"+" where id="+id;
+			@SuppressWarnings("rawtypes")
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			
+			@SuppressWarnings("unchecked")
+			Product listProduct = (Product) query.uniqueResult();
+			return listProduct;
+		}
+		
+		@Transactional
+		public List<Product> Homelist() {
+			String hql="from Product ORDER BY RAND()";
+			@SuppressWarnings("rawtypes")
+			Query query=sessionFactory.getCurrentSession().createQuery(hql).setMaxResults(6);
+			@SuppressWarnings("unchecked")
+			List<Product> listProduct = (List<Product>) query.list();
+			if (listProduct != null && !listProduct.isEmpty()) {
+				return listProduct;
+			}
+			return null;
+		}
+		
+		
 }
 

@@ -15,6 +15,4 @@ public interface CategoryDAO {
 	public Category get(int id);
 	public List<Category> list();
 	
-	
-
 }

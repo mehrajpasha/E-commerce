@@ -12,6 +12,7 @@
 <title>Product</title>
 </head>
 <body>
+
 	<div class="text-center myForm">
 		<c:url var="action" value="editproduct"></c:url>
 		<form:form action="${action}" modelAttribute="product"
@@ -37,6 +38,7 @@
 					<td>Price:</td>
 					<td><form:input class="input1" path="price" /></td>
 				</tr>
+				
 				<tr>
 				<td>Category:</td>
 				<td><form:select path="categoryid" required="true">
@@ -46,11 +48,17 @@
 								</form:select></td>
 								<tr>
 								<td>Supplier:</td>
-				<td><form:select path="supplierid" required="true">
+				<td><form:select path="suppliername" required="true">
 				<c:forEach items="${supplierList}" var="supplier">
-								<form:option class="input1" value="${supplier.id}">${supplier.name}</form:option>
+								<form:option class="input1" value="${supplier.name}">${supplier.name}</form:option>
 							</c:forEach>
 								</form:select></td></tr>
+								
+											<tr>
+								
+				
+								
+								
 				<tr>
 					<td>Image:</td>
 					<td><form:input type="file"
@@ -65,42 +73,44 @@
 		</form:form>
 	</div>
 	<div align="center">
-		<table class="table1" style="width: 80%">
+		<table class="table" style="width: 100%">
 			<caption>Products</caption>
 			<thead>
-				<tr id="tr1">
+				<tr>
 					<th>Product Id</th>
 					<th>Product Name</th>
 					<th>Product Description</th>
 					<th>Product Price</th>
-					<th>Category</th>
 					<th>Supplier</th>
+					<th>Category</th>
 					<th>Image</th>
 					<th>Edit</th>
 					<th>Delete</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${productList}" var="product">
-					<tr id="tr1">
-						<td id="td1"><c:out value="${product.id}" />
-						<td id="td1"><c:out value="${product.name}" />
-						<td id="td1"><c:out value="${product.description}" />
-						<td id="td1"><c:out value="${product.price}" />
-						 <td id="td1"><c:out value="${product.categoryid}" />
-						<td id="td1"><c:out value="${product.supplierid}" />
+					<tr>
+						<td><c:out value="${product.id}" />
+						<td><c:out value="${product.name}" />
+						<td><c:out value="${product.description}" />
+						<td><c:out value="${product.price}" />
+						<td><c:out value="${product.suppliername}" />
+						<td><c:out value="${product.categoryid}"/>
 						<td><div class="thumbnail">
 								<img height="100px" width="100px" alt="${product.id }"
 									src="<c:url value="/resources/images/product/${product.id }.jpg"></c:url>">
 							</div>
-						<td id="td1"><a href="addeditproduct/${product.id }">edit</a>
-						<td id="td1"><a href="adddeleteproduct/${product.id }">delete</a>
+						<td><a href="addeditproduct/${product.id }">edit</a>
+						<td><a href="adddeleteproduct/${product.id }">delete</a>
+						
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 
 	</div>
-	</div>
+	
 </body>
 </html>

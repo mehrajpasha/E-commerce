@@ -12,17 +12,24 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.shoppingcart.Dao.CartDAO;
+import com.niit.shoppingcart.Dao.CartDAOImpl;
 import com.niit.shoppingcart.Dao.CategoryDAO;
 import com.niit.shoppingcart.Dao.CategoryDAOImpl;
+import com.niit.shoppingcart.Dao.CheckoutDAO;
+import com.niit.shoppingcart.Dao.CheckoutDAOImpl;
 import com.niit.shoppingcart.Dao.ProductDAO;
 import com.niit.shoppingcart.Dao.ProductDAOImpl;
 import com.niit.shoppingcart.Dao.SupplierDAO;
 import com.niit.shoppingcart.Dao.SupplierDAOImpl;
 import com.niit.shoppingcart.Dao.UserDetailsDAO;
 import com.niit.shoppingcart.Dao.UserDetailsDAOImpl;
+import com.niit.shoppingcart.model.Cart;
 import com.niit.shoppingcart.model.Category;
+import com.niit.shoppingcart.model.Checkout;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
+import com.niit.shoppingcart.model.UserDetails;
 
 @Configuration
 @ComponentScan("com.niit.shoppingcart")
@@ -57,6 +64,9 @@ public class Applicationcontextconfig {
 		sessionBuilder.addAnnotatedClass(Category.class);
 		sessionBuilder.addAnnotatedClass(Supplier.class);
 		sessionBuilder.addAnnotatedClass(Product.class);
+		sessionBuilder.addAnnotatedClass(Cart.class);
+		sessionBuilder.addAnnotatedClass(UserDetails.class);
+		sessionBuilder.addAnnotatedClass(Checkout.class);
 		System.out.println("session");
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -92,8 +102,20 @@ public class Applicationcontextconfig {
 	@Autowired
 	@Bean(name = "UserDetailsDAO")
 	public UserDetailsDAO getUserDetailsDAO(SessionFactory sessionFactory) {
-		return new UserDetailsDAOImpl(sessionFactory);
-
+		return new UserDetailsDAOImpl(sessionFactory);	
 	}
+	
+
+	@Autowired
+	@Bean(name = "CartDAO")
+	public CartDAO getCartDAO(SessionFactory sessionFactory) {
+		return new CartDAOImpl(sessionFactory);
 }
+	@Autowired
+	@Bean(name="checkoutDAO")
+	public CheckoutDAO getcheckoutDAO(SessionFactory sessionFactory){
+		
+		return new CheckoutDAOImpl(sessionFactory);
+	}
+	}
 

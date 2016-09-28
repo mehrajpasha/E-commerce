@@ -26,7 +26,7 @@ public class SupplierController {
 	
 
 	@RequestMapping(value="editsupplier")
-	public String editsupplier(@ModelAttribute("supplier") Supplier supplier, HttpServletRequest request, Model m){
+	public String editsupplier(@ModelAttribute("supplier") Supplier supplier){
 		supplierDAO.saveOrUpdate(supplier);
 		return "redirect:/Supplier";
 	}
@@ -39,12 +39,12 @@ public class SupplierController {
 		return mv;
 	}
 @RequestMapping(value ="addeditsupplier/{id}" )
-public String SupplierPageedit(@PathVariable("id") int id,RedirectAttributes attributes, HttpServletRequest request) {
+public String SupplierPageedit(@PathVariable("id") int id,RedirectAttributes attributes) {
 	attributes.addFlashAttribute("supplier", this.supplierDAO.get(id));
 	return "redirect:/Supplier";
 }
 @RequestMapping(value ={"adddeletesupplier/{id}"} )
-public String SupplierPagedelete(@PathVariable("id") int id, @ModelAttribute("supplier") Supplier supplier,Model m, HttpServletRequest request) {
+public String SupplierPagedelete(@PathVariable("id") int id, @ModelAttribute("supplier") Supplier supplier) {
 	supplierDAO.delete(supplier);
 	return "redirect:/Supplier";
 

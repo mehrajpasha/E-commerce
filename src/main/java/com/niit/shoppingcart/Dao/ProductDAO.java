@@ -15,6 +15,12 @@ public interface ProductDAO {
 	public boolean delete(Product product);
 	public Product get(int id);
 	public List<Product> list();
+	public Product getindividual(int id);
+	public List<Product> getbycategory(int id);
+	public List<Product> Homelist();
+
+
+
 	/*public List<Product> getbycategory(int id);*/
 
 	

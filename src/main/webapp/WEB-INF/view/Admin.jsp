@@ -13,21 +13,23 @@ uri="http://www.springframework.org/tags/form" %>
 <title>Admin</title>
 </head>
 <body>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"><img alt="logo" src="D:\images\R1.jpg" width="35" height="35"></a>
     </div>
-    <ul class="nav navbar-nav">
+<ul class="nav navbar-nav">
        <li><a class="active" href="Supplier">Supplier</a></li>
-      <li><a href="Product">product</a></li>
-      <li><a href="Category">category</a></li>
+      <li><a href="Product">Product</a></li>
+      <li><a href="Category">Category</a></li>
+      <li><a href="perform_logout">logout</a></li>
     </ul>
   </div>
 </nav>
 ${msg}
 ${msg1}
-<script>
+<!-- <script>
 var app = angular.module("myapp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
@@ -42,7 +44,7 @@ app.config(function($routeProvider) {
     });
 });
 </script>  
-<c:choose>
+ --><c:choose>
 <c:when test="${UserClickedsupplier}">
 <c:import url="/WEB-INF/view/Supplier.jsp"></c:import>
 </c:when>

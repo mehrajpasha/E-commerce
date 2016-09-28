@@ -33,7 +33,7 @@ public class CategoryController {
 	
 	 private Path path;
 
-	@RequestMapping(value={"editcategory","addeditcategory/{id}/editcategory"})
+	@RequestMapping(value="editcategory")
 	public String editcategory(@ModelAttribute("category") Category category, HttpServletRequest request,Model m){
 		categoryDAO.saveOrUpdate(category);
 		return "redirect:/Category";
